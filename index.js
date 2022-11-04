@@ -7,5 +7,3 @@ const index = {
   generateUser,
 };
 module.exports = index;
-
-
