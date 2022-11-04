@@ -1,6 +1,6 @@
 {
   "name": "@arti.oga/random-package",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "Random user generator",
   "main": "index.js",
   "scripts": {
@@ -11,7 +11,13 @@
     "url": "git+https://github.com/ArtiomOganesyan/arti.oga-fake-package.git"
   },
   "keywords": [
-    "randomUser", "random", "userGenerator", "personGenerator", "profileGenerator", "MockUser", "user"
+    "randomUser",
+    "random",
+    "userGenerator",
+    "personGenerator",
+    "profileGenerator",
+    "MockUser",
+    "user"
   ],
   "author": "arti.oga",
   "license": "ISC",
