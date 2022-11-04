@@ -1,3 +1,11 @@
-exports.printMsg = function() {
-    console.log("This is a message from the demo package");
-  }
+const { generateUser } = require('./generateUser');
+
+/**
+ * Top level object.
+ */
+const index = {
+  generateUser,
+};
+module.exports = index;
+
+

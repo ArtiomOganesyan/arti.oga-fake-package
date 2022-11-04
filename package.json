@@ -1,12 +1,27 @@
 {
-  "name": "@arti.oga/fake-package",
-  "version": "1.0.0",
-  "description": "",
+  "name": "@arti.oga/random-package",
+  "version": "1.1.0",
+  "description": "is asdf",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "keywords": [],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ArtiomOganesyan/arti.oga-fake-package.git"
+  },
+  "keywords": [
+    "randomUser", "random", "userGenerator", "personGenerator", "profileGenerator", "MockUser", "user"
+  ],
   "author": "arti.oga",
-  "license": "ISC"
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ArtiomOganesyan/arti.oga-fake-package/issues"
+  },
+  "homepage": "https://github.com/ArtiomOganesyan/arti.oga-fake-package#readme",
+  "devDependencies": {
+    "eslint": "^8.26.0",
+    "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-plugin-import": "^2.26.0"
+  }
 }
