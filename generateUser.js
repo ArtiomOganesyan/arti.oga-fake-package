@@ -21,9 +21,7 @@ const optionValidations = ({ specific }) => {
   Object
     .entries(specific)
     .forEach(([key, value]) => {
-      // console.log('==>>', key, value);
       rules.forEach(([type, ruleFor]) => {
-        // console.log({ type, ruleFor });
         if (ruleFor.some((item) => item === key)) {
           if (typeof value !== type) {
             results.push(`\nproperty ${key} of option.specific must be typeof ${type}`);
@@ -44,7 +42,7 @@ const optionValidations = ({ specific }) => {
  * @property {string} specific.email - Email.
  * @returns {object} Random user
  */
-const generateUser = (options) => {
+const generateUser = (options = {}) => {
   optionValidations(options);
 
   const gender = options?.specific?.gender
