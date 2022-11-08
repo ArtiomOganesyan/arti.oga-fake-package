@@ -4,16 +4,16 @@ const userLastNames = require('./constants/userLastName');
 const userNameFemales = require('./constants/userNameFemale');
 const userNameMales = require('./constants/userNameMale');
 
-const randomTwo = (first, second) => (Math.random() > 0.5 ? first : second);
-const randomItem = (arr) => arr[Math.floor(Math.random() * arr.length)];
-const generateEmail = (firstName, lastName, age, domain, topDomain) => `${firstName}${randomTwo('.', '')}${lastName}${randomTwo(age, '')}@${domain}.${topDomain}`;
+const {
+  randomItem, randomTwo, randomBirthDate, randomEmail, randomIp, randomId,
+} = require('./utils');
 
 const optionValidations = ({ specific }) => {
   if (!specific) return;
 
   const rules = [
     ['number', ['age']],
-    ['string', ['gender', 'firstName', 'lastName', 'email', 'emailDomain', 'emailTopDomain']],
+    ['string', ['gender', 'firstName', 'lastName', 'email', 'emailDomain', 'emailTopDomain', 'birthDate', 'ip', 'id', 'idPattern']],
   ];
 
   const results = [];
@@ -51,11 +51,17 @@ const generateUser = (options = {}) => {
   const age = options?.specific?.age
   ?? Math.floor(Math.random() * 60 + 15);
 
+  const birthDate = options?.specific?.birthDate
+    ? options?.specific?.birthDate : randomBirthDate(age).toLocaleDateString();
+
   const emailDomain = options?.specific?.emailDomain
   ?? randomItem(emailDomains);
 
   const emailTopDomain = options?.specific?.emailTopDomain
    ?? randomItem(emailTopDomains);
+
+  const ip = options?.specific?.ip ?? randomIp();
+
   const userFirstName = options?.specific?.firstName
    ?? (gender === 'female' ? randomItem(userNameFemales) : randomItem(userNameMales));
 
@@ -63,10 +69,20 @@ const generateUser = (options = {}) => {
    ?? randomItem(userLastNames);
 
   const email = options?.specific?.email
-   ?? generateEmail(userFirstName, userLastName, age, emailDomain, emailTopDomain);
+   ?? randomEmail(userFirstName, userLastName, age, emailDomain, emailTopDomain);
+
+  const id = options?.specific?.id ?? randomId(options?.specific?.idPattern);
 
   return {
-    gender, age, email, userFirstName, userLastName,
+    id,
+    gender,
+    age,
+    birthDate,
+    email,
+    ip,
+    userFirstName,
+    userLastName,
+    userFullName: `${userFirstName} ${userLastName}`,
   };
 };
 

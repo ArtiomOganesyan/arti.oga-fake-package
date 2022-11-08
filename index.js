@@ -6,4 +6,5 @@ const { generateUser } = require('./generateUser');
 const index = {
   generateUser,
 };
+
 module.exports = index;
