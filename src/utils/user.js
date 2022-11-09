@@ -1,5 +1,5 @@
-const randomTwo = (first, second) => (Math.random() > 0.5 ? first : second);
-const randomItem = (arr) => arr[Math.floor(Math.random() * arr.length)];
+const { randomTwo } = require('./helpers');
+
 const randomEmail = (firstName, lastName, age, domain, topDomain) => `${firstName}${randomTwo('.', '')}${lastName}${randomTwo(age, '')}@${domain}.${topDomain}`;
 
 function randomBirthDate(age) {
@@ -27,5 +27,5 @@ const randomIp = () => Array(4).fill(0).map((_, i) => Math.floor(Math.random() *
 const randomId = (pattern = '###-##-####') => pattern.split('').map((el) => (el === '#' ? Math.floor(Math.random() * 9) + 1 : el)).join('');
 
 module.exports = {
-  randomItem, randomTwo, randomBirthDate, randomEmail, randomIp, randomId,
+  randomEmail, randomBirthDate, randomId, randomIp,
 };
