@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <title>JSDoc: Home</title>
+    <title>JSDoc: Source: utils/helpers.js</title>
 
     <script src="scripts/prettify/prettify.js"></script>
     <script src="scripts/prettify/lang-css.js"></script>
@@ -19,9 +19,31 @@
 
   <body>
     <div id="main">
-      <h1 class="page-title">Home</h1>
+      <h1 class="page-title">Source: utils/helpers.js</h1>
 
-      <h3></h3>
+      <section>
+        <article>
+          <pre class="prettyprint source linenums"><code>/**
+ * Just a simple Math.random to choose between first or second argument
+ * @param {*} [first=null] The first argument to choose from
+ * @param {*} [second=null] The second argument to choose from
+ * @returns {*} Returns the first or second argument
+ */
+const randomTwo = (first = null, second = null) => (Math.random() > 0.5 ? first : second);
+
+/**
+ * Just a simple Math.random to choose a random element from the array
+ * @param {Array&lt;*>} [arr=[]] List of elements to choose from
+ * @returns {*} Returns a random element from the array
+ */
+const randomItem = (arr = []) => arr[Math.floor(Math.random() * arr.length)];
+
+module.exports = {
+  randomItem, randomTwo,
+};
+</code></pre>
+        </article>
+      </section>
     </div>
 
     <nav>

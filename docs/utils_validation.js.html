@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <title>JSDoc: Source: index.js</title>
+    <title>JSDoc: Source: utils/validation.js</title>
 
     <script src="scripts/prettify/prettify.js"></script>
     <script src="scripts/prettify/lang-css.js"></script>
@@ -19,32 +19,59 @@
 
   <body>
     <div id="main">
-      <h1 class="page-title">Source: index.js</h1>
+      <h1 class="page-title">Source: utils/validation.js</h1>
 
       <section>
         <article>
-          <pre
-            class="prettyprint source linenums"
-          ><code>const generateUser = require('./generateUser');
+          <pre class="prettyprint source linenums"><code>/**
+ * Each inner array of SpecificRules contains first element as the type against which the values
+ * will be tested. The second element is an array of keys, which values will be tested.
+ * @typedef RulesFor
+ * @type {Array}
+ * @property {string} 0 type of rule
+ * @property {Array&lt;string>} 1 which fields should follow the rule
+ */
 
 /**
- * test string
- * @type {string}
+ * Consists of arrays of rules which validates the option.specific values
+ * @typedef SpecificRules
+ * @type {Array&lt;RulesFor>}
  */
-const dd = '2';
 
 /**
- * @type {{ specific:{ age:number,id:string }, attributes: Array&lt;string>}}
+ * Rules that go through the object of specific keys and make sure their value matches required type
+ * @type {SpecificRules}
+*/
+const specificRules = [
+  ['number', ['age']],
+  ['string', ['gender', 'firstName', 'lastName', 'email', 'emailDomain', 'emailTopDomain', 'birthDay', 'ip', 'id', 'idPattern']],
+];
+
+/**
+ * @param {Options} options Options passed from the generateUser function
+ * @returns {Error|undefined} Error will be returned if the options.specific validates
+ * the specificRules. Otherwise, undefined will be returned.
  */
-const object = {
-  specific: { age: 4, id: 'test' }, attributes: [''],
+const optionValidation = ({ specific }) => {
+  if (!specific) return;
+
+  const results = [];
+
+  Object
+    .entries(specific)
+    .forEach(([key, value]) => {
+      specificRules.forEach(([type, ruleFor]) => {
+        if (ruleFor.some((item) => item === key)) {
+          if (typeof value !== type) {
+            results.push(`\nproperty ${key} of option.specific must be typeof ${type}`);
+          }
+        }
+      });
+    });
+  if (results.length) throw new Error(`${results.join(' ')}\n`);
 };
 
-// console.log(object);
-
-module.exports = {
-  generateUser,
-};
+module.exports = { optionValidation };
 </code></pre>
         </article>
       </section>
