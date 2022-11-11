@@ -26,6 +26,7 @@ const {
 /**
  * @typedef {Object} Options
  * @property {Specific} [specific] - Specific options
+ * @property {string|number} [amount] - Amount of users generated
  */
 
 /**
@@ -34,6 +35,15 @@ const {
  */
 const generateUser = (options = {}) => {
   optionValidation(options);
+
+  if (options.amount) {
+    try {
+      const result = new Array(+options.amount).fill('').map((_) => generateUser({ specific: options.specific }));
+      return result;
+    } catch (error) {
+      throw new Error('options.amount must be a number or a string');
+    }
+  }
 
   const gender = options?.specific?.gender
   ?? randomTwo('female', 'male');
