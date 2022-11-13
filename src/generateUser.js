@@ -41,6 +41,7 @@ const generateUser = (options = {}) => {
       const result = new Array(+options.amount).fill('').map((_) => generateUser({ specific: options.specific }));
       return result;
     } catch (error) {
+      console.log(error);
       throw new Error('options.amount must be a number or a string');
     }
   }
@@ -73,7 +74,7 @@ const generateUser = (options = {}) => {
 
   const id = options?.specific?.id ?? randomId(options?.specific?.idPattern);
 
-  return {
+  const generatedUser = {
     id,
     gender,
     age,
@@ -84,6 +85,13 @@ const generateUser = (options = {}) => {
     userLastName,
     userFullName: `${userFirstName} ${userLastName}`,
   };
+
+  if (options.attributes && Array.isArray(options.attributes)) {
+    const result = {};
+    options.attributes.forEach((key) => { result[key] = generatedUser[key]; });
+  } else {
+    throw new Error('options.attributes must be an array of strings');
+  }
 };
 
 module.exports = generateUser;
