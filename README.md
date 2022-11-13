@@ -19,7 +19,7 @@ const Randomizer = require('@arti.oga/random-package')
 ## Methods
 
 generateUser - is used to generate a random user. You are able to pass as a parameter of the method an options object.
-**If you want to generate a completely random user than don't pass any parameters.**
+**If you want to generate a completely random user than don't pass any parameters.** However, if you want to generate a user with specific values, you can pass a parameter object with a key `specific`.
 
 ### example
 
@@ -42,7 +42,7 @@ Randomizer.generateUser({
 // }
 ```
 
-If we need to generate a number of different users we can pass an amount in our options as a string or number. If we pass a specific option then we will generate a list of users with specific information.
+If we need to generate a number of different users we can pass an `amount` in our options as a string or number. If we pass a specific option then we will generate a list of users with specific information.
 
 ```
 Randomizer.generateUser({
@@ -74,6 +74,23 @@ Randomizer.generateUser({
 //     userLastName: 'Carter',
 //     userFullName: 'Nancy Carter'
 //   }
+// ]
+```
+
+If we are interested in specific attributes than we can pass an parameter with the key `attributes`. This will generate a user, however, only the attributes that we are interested in will appear.
+
+```
+Randomizer.generateUser({
+    amount: 4,
+    specific: { age: 53, firstName: 'Nancy' },
+    attributes: ['age', 'email'],
+  })
+
+// [
+//   { age: 53, email: 'Nancy.Wilson53@email.org' },
+//   { age: 53, email: 'Nancy.Phillips@yandex.ru' },
+//   { age: 53, email: 'Nancy.Torres53@writeme.net' },
+//   { age: 53, email: 'NancyMartinez53@yandex.ru' }
 // ]
 ```
 

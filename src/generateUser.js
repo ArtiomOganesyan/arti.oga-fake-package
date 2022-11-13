@@ -27,6 +27,7 @@ const {
  * @typedef {Object} Options
  * @property {Specific} [specific] - Specific options
  * @property {string|number} [amount] - Amount of users generated
+ * @property {Array<string>} [attributes] - Attributes which will be added to the generatedUser
  */
 
 /**
@@ -36,44 +37,47 @@ const {
 const generateUser = (options = {}) => {
   optionValidation(options);
 
-  if (options.amount) {
+  const { amount, specific, attributes } = options;
+
+  if (amount) {
     try {
-      const result = new Array(+options.amount).fill('').map((_) => generateUser({ specific: options.specific }));
+      const result = new Array(+amount).fill('').map((_) => generateUser({ specific, attributes }));
       return result;
     } catch (error) {
+      console.log(error);
       throw new Error('options.amount must be a number or a string');
     }
   }
 
-  const gender = options?.specific?.gender
+  const gender = specific?.gender
   ?? randomTwo('female', 'male');
 
-  const age = options?.specific?.age
+  const age = specific?.age
   ?? Math.floor(Math.random() * 60 + 15);
 
-  const birthDay = options?.specific?.birthDay
-    ? options?.specific?.birthDay : randomBirthDay(age).toLocaleDateString();
+  const birthDay = specific?.birthDay
+    ? specific?.birthDay : randomBirthDay(age).toLocaleDateString();
 
-  const emailDomain = options?.specific?.emailDomain
+  const emailDomain = specific?.emailDomain
   ?? randomItem(emailDomains);
 
-  const emailTopDomain = options?.specific?.emailTopDomain
+  const emailTopDomain = specific?.emailTopDomain
    ?? randomItem(emailTopDomains);
 
-  const ip = options?.specific?.ip ?? randomIp();
+  const ip = specific?.ip ?? randomIp();
 
-  const userFirstName = options?.specific?.firstName
+  const userFirstName = specific?.firstName
    ?? (gender === 'female' ? randomItem(userNameFemales) : randomItem(userNameMales));
 
-  const userLastName = options?.specific?.lastName
+  const userLastName = specific?.lastName
    ?? randomItem(userLastNames);
 
-  const email = options?.specific?.email
+  const email = specific?.email
    ?? randomEmail(userFirstName, userLastName, age, emailDomain, emailTopDomain);
 
-  const id = options?.specific?.id ?? randomId(options?.specific?.idPattern);
+  const id = specific?.id ?? randomId(specific?.idPattern);
 
-  return {
+  const generatedUser = {
     id,
     gender,
     age,
@@ -84,6 +88,19 @@ const generateUser = (options = {}) => {
     userLastName,
     userFullName: `${userFirstName} ${userLastName}`,
   };
+
+  if (!options.attributes) {
+    return generatedUser;
+  }
+
+  if (!Array.isArray(options.attributes)) {
+    throw new Error('options.attributes must be an array of strings');
+  }
+
+  const result = {};
+  options.attributes.forEach((key) => { result[key] = generatedUser[key]; });
+
+  return result;
 };
 
 module.exports = generateUser;
