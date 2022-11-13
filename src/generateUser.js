@@ -66,14 +66,14 @@ const generateUser = (options = {}) => {
 
   const ip = specific?.ip ?? randomIp();
 
-  const userFirstName = specific?.firstName
+  const FirstName = specific?.firstName
    ?? (gender === 'female' ? randomItem(userNameFemales) : randomItem(userNameMales));
 
-  const userLastName = specific?.lastName
+  const LastName = specific?.lastName
    ?? randomItem(userLastNames);
 
   const email = specific?.email
-   ?? randomEmail(userFirstName, userLastName, age, emailDomain, emailTopDomain);
+   ?? randomEmail(FirstName, LastName, age, emailDomain, emailTopDomain);
 
   const id = specific?.id ?? randomId(specific?.idPattern);
 
@@ -84,9 +84,9 @@ const generateUser = (options = {}) => {
     birthDay,
     email,
     ip,
-    userFirstName,
-    userLastName,
-    userFullName: `${userFirstName} ${userLastName}`,
+    FirstName,
+    LastName,
+    FullName: `${FirstName} ${LastName}`,
   };
 
   if (!options.attributes) {
