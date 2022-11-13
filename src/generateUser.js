@@ -41,7 +41,7 @@ const generateUser = (options = {}) => {
 
   if (amount) {
     try {
-      const result = new Array(+amount).fill('').map((_) => generateUser({ specific, attributes }));
+      const result = new Array(+amount).fill('').map(() => generateUser({ specific, attributes }));
       return result;
     } catch (error) {
       console.log(error);
