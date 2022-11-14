@@ -5,7 +5,7 @@ const userNameFemales = require('../constants/userNameFemale');
 const userNameMales = require('../constants/userNameMale');
 
 const {
-  randomItem, randomTwo, optionValidation, randomBirthDay, randomEmail, randomIp, randomId,
+  randomItem, randomTwo, optionValidation, randomBirthDay, randomEmail, randomIp, randomDocument,
 } = require('./utils');
 
 /**
@@ -15,8 +15,8 @@ const {
  * @property {string} [firstName] - Specific firstName
  * @property {string} [lastName] - Specific lastName
  * @property {string} [ip] - Specific ip
- * @property {string} [id] - Specific id
- * @property {string} [idPattern] - Specific idPattern
+ * @property {string} [document] - Specific document
+ * @property {string} [documentPattern] - Specific documentPattern
  * @property {string} [email] - Specific email
  * @property {string} [emailDomain] - Specific emailDomain
  * @property {string} [emailTopDomain] - Specific emailTopDomain
@@ -66,27 +66,27 @@ const generateUser = (options = {}) => {
 
   const ip = specific?.ip ?? randomIp();
 
-  const FirstName = specific?.firstName
+  const firstName = specific?.firstName
    ?? (gender === 'female' ? randomItem(userNameFemales) : randomItem(userNameMales));
 
-  const LastName = specific?.lastName
+  const lastName = specific?.lastName
    ?? randomItem(userLastNames);
 
   const email = specific?.email
-   ?? randomEmail(FirstName, LastName, age, emailDomain, emailTopDomain);
+   ?? randomEmail(firstName, lastName, age, emailDomain, emailTopDomain);
 
-  const id = specific?.id ?? randomId(specific?.idPattern);
+  const document = specific?.document ?? randomDocument(specific?.documentPattern);
 
   const generatedUser = {
-    id,
+    document,
     gender,
     age,
     birthDay,
     email,
     ip,
-    FirstName,
-    LastName,
-    FullName: `${FirstName} ${LastName}`,
+    firstName,
+    lastName,
+    fullName: `${firstName} ${lastName}`,
   };
 
   if (!options.attributes) {

@@ -289,7 +289,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="generateUser.js.html">generateUser.js</a>, <a href="generateUser.js.html#line36">line 36</a>
+        <a href="generateUser.js.html">generateUser.js</a>, <a href="generateUser.js.html#line37">line 37</a>
     </li></ul></dd>
     
 
@@ -661,6 +661,182 @@ the specificRules. Otherwise, undefined will be returned.</p>
     
 
     
+    <h4 class="name" id="randomDocument"><span class="type-signature"></span>randomDocument<span class="signature">(pattern<span class="signature-attributes">opt</span>)</span><span class="type-signature"> &rarr; {string}</span></h4>
+    
+
+    
+
+
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+        <th>Attributes</th>
+        
+
+        
+        <th>Default</th>
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>pattern</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                    ###-##-####
+                
+                </td>
+            
+
+            <td class="description last"><p>Pattern that the document should match.
+Symbol # will be assigned a random number</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="utils_user.js.html">utils/user.js</a>, <a href="utils_user.js.html#line47">line 47</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    <p>Returns a random document matching the pattern</p>
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">string</span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+
+
+        
+            
+
+    
+
+    
     <h4 class="name" id="randomEmail"><span class="type-signature"></span>randomEmail<span class="signature">(firstName, lastName, age, domain, topDomain)</span><span class="type-signature"> &rarr; {string}</span></h4>
     
 
@@ -880,182 +1056,6 @@ the specificRules. Otherwise, undefined will be returned.</p>
         
 <div class="param-desc">
     <p>Returns a random email based on the arguments</p>
-</div>
-
-
-
-<dl>
-    <dt>
-        Type
-    </dt>
-    <dd>
-        
-<span class="param-type">string</span>
-
-
-    </dd>
-</dl>
-
-    
-
-
-
-
-
-        
-            
-
-    
-
-    
-    <h4 class="name" id="randomId"><span class="type-signature"></span>randomId<span class="signature">(pattern<span class="signature-attributes">opt</span>)</span><span class="type-signature"> &rarr; {string}</span></h4>
-    
-
-    
-
-
-
-
-
-
-
-
-
-
-
-    <h5>Parameters:</h5>
-    
-
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-        <th>Attributes</th>
-        
-
-        
-        <th>Default</th>
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>pattern</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">string</span>
-
-
-            
-            </td>
-
-            
-                <td class="attributes">
-                
-                    &lt;optional><br>
-                
-
-                
-
-                
-                </td>
-            
-
-            
-                <td class="default">
-                
-                    ###-##-####
-                
-                </td>
-            
-
-            <td class="description last"><p>Pattern that the document should match.
-Symbol # will be assigned a random number</p></td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="utils_user.js.html">utils/user.js</a>, <a href="utils_user.js.html#line47">line 47</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<h5>Returns:</h5>
-
-        
-<div class="param-desc">
-    <p>Returns a random document matching the pattern</p>
 </div>
 
 
@@ -1700,6 +1700,37 @@ Symbol # will be assigned a random number</p></td>
         </tr>
 
     
+
+        <tr>
+            
+                <td class="name"><code>attributes</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Array.&lt;string></span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>Attributes which will be added to the generatedUser</p></td>
+        </tr>
+
+    
     </tbody>
 </table>
 
@@ -2105,7 +2136,7 @@ will be tested. The second element is an array of keys, which values will be tes
 
         <tr>
             
-                <td class="name"><code>id</code></td>
+                <td class="name"><code>document</code></td>
             
 
             <td class="type">
@@ -2129,14 +2160,14 @@ will be tested. The second element is an array of keys, which values will be tes
 
             
 
-            <td class="description last"><p>Specific id</p></td>
+            <td class="description last"><p>Specific document</p></td>
         </tr>
 
     
 
         <tr>
             
-                <td class="name"><code>idPattern</code></td>
+                <td class="name"><code>documentPattern</code></td>
             
 
             <td class="type">
@@ -2160,7 +2191,7 @@ will be tested. The second element is an array of keys, which values will be tes
 
             
 
-            <td class="description last"><p>Specific idPattern</p></td>
+            <td class="description last"><p>Specific documentPattern</p></td>
         </tr>
 
     
@@ -2425,13 +2456,13 @@ will be tested. The second element is an array of keys, which values will be tes
 </div>
 
 <nav>
-    <h2><a href="index.html">Home</a></h2><h3>Global</h3><ul><li><a href="global.html#generateUser">generateUser</a></li><li><a href="global.html#optionValidation">optionValidation</a></li><li><a href="global.html#randomBirthDay">randomBirthDay</a></li><li><a href="global.html#randomEmail">randomEmail</a></li><li><a href="global.html#randomId">randomId</a></li><li><a href="global.html#randomIp">randomIp</a></li><li><a href="global.html#randomItem">randomItem</a></li><li><a href="global.html#randomTwo">randomTwo</a></li><li><a href="global.html#specificRules">specificRules</a></li></ul>
+    <h2><a href="index.html">Home</a></h2><h3>Global</h3><ul><li><a href="global.html#generateUser">generateUser</a></li><li><a href="global.html#optionValidation">optionValidation</a></li><li><a href="global.html#randomBirthDay">randomBirthDay</a></li><li><a href="global.html#randomDocument">randomDocument</a></li><li><a href="global.html#randomEmail">randomEmail</a></li><li><a href="global.html#randomIp">randomIp</a></li><li><a href="global.html#randomItem">randomItem</a></li><li><a href="global.html#randomTwo">randomTwo</a></li><li><a href="global.html#specificRules">specificRules</a></li></ul>
 </nav>
 
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.0</a> on Fri Nov 11 2022 19:36:06 GMT+0500 (Узбекистан, стандартное время)
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.0</a> on Mon Nov 14 2022 15:50:08 GMT+0500 (Узбекистан, стандартное время)
 </footer>
 
 <script> prettyPrint(); </script>

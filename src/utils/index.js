@@ -3,9 +3,9 @@ const { randomItem, randomTwo } = require('./helpers');
 const { optionValidation } = require('./validation');
 
 const {
-  randomEmail, randomBirthDay, randomId, randomIp,
+  randomEmail, randomBirthDay, randomDocument, randomIp,
 } = require('./user');
 
 module.exports = {
-  randomItem, randomTwo, optionValidation, randomBirthDay, randomEmail, randomIp, randomId,
+  randomItem, randomTwo, optionValidation, randomBirthDay, randomEmail, randomIp, randomDocument,
 };

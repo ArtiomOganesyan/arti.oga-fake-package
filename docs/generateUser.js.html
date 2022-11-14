@@ -33,7 +33,7 @@ const userNameFemales = require('../constants/userNameFemale');
 const userNameMales = require('../constants/userNameMale');
 
 const {
-  randomItem, randomTwo, optionValidation, randomBirthDay, randomEmail, randomIp, randomId,
+  randomItem, randomTwo, optionValidation, randomBirthDay, randomEmail, randomIp, randomDocument,
 } = require('./utils');
 
 /**
@@ -43,8 +43,8 @@ const {
  * @property {string} [firstName] - Specific firstName
  * @property {string} [lastName] - Specific lastName
  * @property {string} [ip] - Specific ip
- * @property {string} [id] - Specific id
- * @property {string} [idPattern] - Specific idPattern
+ * @property {string} [document] - Specific document
+ * @property {string} [documentPattern] - Specific documentPattern
  * @property {string} [email] - Specific email
  * @property {string} [emailDomain] - Specific emailDomain
  * @property {string} [emailTopDomain] - Specific emailTopDomain
@@ -55,6 +55,7 @@ const {
  * @typedef {Object} Options
  * @property {Specific} [specific] - Specific options
  * @property {string|number} [amount] - Amount of users generated
+ * @property {Array&lt;string>} [attributes] - Attributes which will be added to the generatedUser
  */
 
 /**
@@ -64,54 +65,70 @@ const {
 const generateUser = (options = {}) => {
   optionValidation(options);
 
-  if (options.amount) {
+  const { amount, specific, attributes } = options;
+
+  if (amount) {
     try {
-      const result = new Array(+options.amount).fill('').map((_) => generateUser({ specific: options.specific }));
+      const result = new Array(+amount).fill('').map(() => generateUser({ specific, attributes }));
       return result;
     } catch (error) {
+      console.log(error);
       throw new Error('options.amount must be a number or a string');
     }
   }
 
-  const gender = options?.specific?.gender
+  const gender = specific?.gender
   ?? randomTwo('female', 'male');
 
-  const age = options?.specific?.age
+  const age = specific?.age
   ?? Math.floor(Math.random() * 60 + 15);
 
-  const birthDay = options?.specific?.birthDay
-    ? options?.specific?.birthDay : randomBirthDay(age).toLocaleDateString();
+  const birthDay = specific?.birthDay
+    ? specific?.birthDay : randomBirthDay(age).toLocaleDateString();
 
-  const emailDomain = options?.specific?.emailDomain
+  const emailDomain = specific?.emailDomain
   ?? randomItem(emailDomains);
 
-  const emailTopDomain = options?.specific?.emailTopDomain
+  const emailTopDomain = specific?.emailTopDomain
    ?? randomItem(emailTopDomains);
 
-  const ip = options?.specific?.ip ?? randomIp();
+  const ip = specific?.ip ?? randomIp();
 
-  const userFirstName = options?.specific?.firstName
+  const firstName = specific?.firstName
    ?? (gender === 'female' ? randomItem(userNameFemales) : randomItem(userNameMales));
 
-  const userLastName = options?.specific?.lastName
+  const lastName = specific?.lastName
    ?? randomItem(userLastNames);
 
-  const email = options?.specific?.email
-   ?? randomEmail(userFirstName, userLastName, age, emailDomain, emailTopDomain);
+  const email = specific?.email
+   ?? randomEmail(firstName, lastName, age, emailDomain, emailTopDomain);
 
-  const id = options?.specific?.id ?? randomId(options?.specific?.idPattern);
+  const document = specific?.document ?? randomDocument(specific?.documentPattern);
 
-  return {
-    id,
+  const generatedUser = {
+    document,
     gender,
     age,
     birthDay,
     email,
     ip,
-    userFirstName,
-    userLastName,
-    userFullName: `${userFirstName} ${userLastName}`,
+    firstName,
+    lastName,
+    fullName: `${firstName} ${lastName}`,
   };
+
+  if (!options.attributes) {
+    return generatedUser;
+  }
+
+  if (!Array.isArray(options.attributes)) {
+    throw new Error('options.attributes must be an array of strings');
+  }
+
+  const result = {};
+  options.attributes.forEach((key) => { result[key] = generatedUser[key]; });
+
+  return result;
 };
 
 module.exports = generateUser;
@@ -125,13 +142,13 @@ module.exports = generateUser;
 </div>
 
 <nav>
-    <h2><a href="index.html">Home</a></h2><h3>Global</h3><ul><li><a href="global.html#generateUser">generateUser</a></li><li><a href="global.html#optionValidation">optionValidation</a></li><li><a href="global.html#randomBirthDay">randomBirthDay</a></li><li><a href="global.html#randomEmail">randomEmail</a></li><li><a href="global.html#randomId">randomId</a></li><li><a href="global.html#randomIp">randomIp</a></li><li><a href="global.html#randomItem">randomItem</a></li><li><a href="global.html#randomTwo">randomTwo</a></li><li><a href="global.html#specificRules">specificRules</a></li></ul>
+    <h2><a href="index.html">Home</a></h2><h3>Global</h3><ul><li><a href="global.html#generateUser">generateUser</a></li><li><a href="global.html#optionValidation">optionValidation</a></li><li><a href="global.html#randomBirthDay">randomBirthDay</a></li><li><a href="global.html#randomDocument">randomDocument</a></li><li><a href="global.html#randomEmail">randomEmail</a></li><li><a href="global.html#randomIp">randomIp</a></li><li><a href="global.html#randomItem">randomItem</a></li><li><a href="global.html#randomTwo">randomTwo</a></li><li><a href="global.html#specificRules">specificRules</a></li></ul>
 </nav>
 
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.0</a> on Fri Nov 11 2022 19:36:06 GMT+0500 (Узбекистан, стандартное время)
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.0</a> on Mon Nov 14 2022 15:50:08 GMT+0500 (Узбекистан, стандартное время)
 </footer>
 
 <script> prettyPrint(); </script>

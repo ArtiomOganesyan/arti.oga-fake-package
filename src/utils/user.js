@@ -44,8 +44,8 @@ const randomIp = () => Array(4).fill(0).map((_, i) => Math.floor(Math.random() *
  * Symbol # will be assigned a random number
  * @returns {string} Returns a random document matching the pattern
  */
-const randomId = (pattern = '###-##-####') => pattern.split('').map((el) => (el === '#' ? Math.floor(Math.random() * 9) + 1 : el)).join('');
+const randomDocument = (pattern = '###-##-####') => pattern.split('').map((el) => (el === '#' ? Math.floor(Math.random() * 9) + 1 : el)).join('');
 
 module.exports = {
-  randomEmail, randomBirthDay, randomId, randomIp,
+  randomEmail, randomBirthDay, randomDocument, randomIp,
 };

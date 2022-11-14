@@ -19,7 +19,7 @@
 */
 const specificRules = [
   ['number', ['age']],
-  ['string', ['gender', 'firstName', 'lastName', 'email', 'emailDomain', 'emailTopDomain', 'birthDay', 'ip', 'id', 'idPattern']],
+  ['string', ['gender', 'firstName', 'lastName', 'email', 'emailDomain', 'emailTopDomain', 'birthDay', 'ip', 'document', 'documentPattern']],
 ];
 
 /**
